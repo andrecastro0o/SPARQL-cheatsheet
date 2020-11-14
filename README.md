@@ -69,6 +69,8 @@ Example: filter only ?label with language tag `@es`
 * “SPARQL 1.1 Query Language.” https://www.w3.org/TR/sparql11-query/.
 * “Bob DuCharme Blog.” http://www.bobdc.com/blog/.
 * “Module: SPARQL — Web Portal for RDF.Rb.” http://rdf.greggkellogg.net/yard/SPARQL.html.
+* “Wikidata:Request a Query - Wikidata.” https://www.wikidata.org/wiki/Wikidata:Request_a_query.
+
 
 
 
