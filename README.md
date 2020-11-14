@@ -42,11 +42,26 @@ WHERE {
 
 
 ### FILTER [lang](https://www.w3.org/TR/rdf-sparql-query/#func-lang)
+Returns the language tag. 
+
+Example: filter only ?label with language tag `@es`
+`FILTER(lang(?label) = 'es')`
+
+`FILTER(lang(?label) = 'es')`
+
 
 
 ### FILTER [datatype](https://www.w3.org/TR/rdf-sparql-query/#func-datatype)
 
 
+## String Operations
+* `UCASE()` convert to upper-case 
+* `LCASE()` convert to lower-case
+* `STRLEN()` lenght of a string
+* `SUBSTR()` substring of first arg, second arg: start position; third arg: character lenght; 
+* `STRSTARTS()`string in first arg starts with string in second arg
+* `STRENDS()`  string in first arg ends with string in second arg
+* `CONTAINS()` string in second arg is within first arg. Example: `CONTAINS("SPARQL", "QL")` is True
 ----
 
 # SPARQL Resources
