@@ -5,6 +5,8 @@ All those SPARQL commands & tricks that you keep on forgetting ヽ༼ຈل͜ຈ�
 
 
 ## FILTER
+
+
 ### FILTER EXISTS
 Returns graph patterns that 
 * Match the condition. `FILTER EXISTS {?subject rdfs:range rdfs:Literal}`
@@ -18,7 +20,10 @@ WHERE {
     FILTER EXISTS {?subject rdfs:range rdfs:Literal} 
 }
 ``` 
+
+
 ### FILTER blank nodes: [isBlank](https://www.w3.org/TR/rdf-sparql-query/#func-isBlank)
+
 * filter in only bank nodes `FILTER (isBlank(?term))` 
 * filter out `FILTER (!isBlank(?term))` 
 ``` SPARQL
@@ -29,14 +34,20 @@ WHERE {
 }
 ```
 
+
 ### FILTER [isIRI](https://www.w3.org/TR/rdf-sparql-query/#func-isIRI)
+
 
 ### FILTER [isLiteral](https://www.w3.org/TR/rdf-sparql-query/#func-isLiteral)
 
+
 ### FILTER [lang](https://www.w3.org/TR/rdf-sparql-query/#func-lang)
+
 
 ### FILTER [datatype](https://www.w3.org/TR/rdf-sparql-query/#func-datatype)
 
+
+----
 
 # SPARQL Resources
 * DuCharme, Bob. Learning SPARQL: Querying and Updating with SPARQL 1.1. Second edition. Sebastopol, CA: O’Reilly Media, 2013.
