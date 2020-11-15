@@ -62,6 +62,15 @@ Example: filter only ?label with language tag `@es`
 * `STRSTARTS()`string in first arg starts with string in second arg
 * `STRENDS()`  string in first arg ends with string in second arg
 * `CONTAINS()` string in second arg is within first arg. Example: `CONTAINS("SPARQL", "QL")` is True
+
+## Aggregation Functions
+* `COUNT`
+* `SUM`
+* `AVG`
+* `MIN`, `MAX`
+* `SAMPLE`
+* `GROUP_CONCAT`
+
 ----
 
 # SPARQL Resources
