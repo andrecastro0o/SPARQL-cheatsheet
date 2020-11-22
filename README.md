@@ -49,6 +49,8 @@ Example: filter only ?label with language tag `@es`
 
 `FILTER(lang(?label) = 'es')`
 
+Example: filter only ?label with *any* `@en` variant (will match all of these: `@en`, `@en-US`, `@en-GB`)
+`FILTER(langMatches(lang(?label), 'en'))`
 
 
 ### FILTER [datatype](https://www.w3.org/TR/rdf-sparql-query/#func-datatype)
