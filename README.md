@@ -5,10 +5,6 @@ All those SPARQL commands & tricks that you keep on forgetting ヽ༼ຈل͜ຈ�
 
 
 ## FILTER
-### FILTER CONTAINS
-*`FILTER CONTAINS(str(?term), "iao").`
-* Using OR `FILTER(CONTAINS(str(?term), "iao") || CONTAINS(str(?term), "bfo") || CONTAINS(str(?term), "obo")) ` 
-
 
 ### FILTER EXISTS
 Returns graph patterns that 
@@ -66,7 +62,8 @@ Example: filter only ?label with *any* `@en` variant (will match all of these: `
 * `SUBSTR()` substring of first arg, second arg: start position; third arg: character lenght; 
 * `STRSTARTS()`string in first arg starts with string in second arg
 * `STRENDS()`  string in first arg ends with string in second arg
-* `CONTAINS()` string in second arg is within first arg. Example: `CONTAINS("SPARQL", "QL")` is True
+* `CONTAINS()` string in second arg is within first arg. Example: `CONTAINS("SPARQL", "QL")` is True. `FILTER(CONTAINS(str(?term), "iao") || CONTAINS(str(?term), "bfo") || CONTAINS(str(?term), "obo")) ` 
+
 
 ## Aggregation Functions
 * `COUNT`
