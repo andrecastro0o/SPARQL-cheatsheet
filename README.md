@@ -5,6 +5,9 @@ All those SPARQL commands & tricks that you keep on forgetting ヽ༼ຈل͜ຈ�
 
 
 ## FILTER
+### FILTER CONTAINS
+*`FILTER CONTAINS(str(?term), "iao").`
+* Using OR `FILTER(CONTAINS(str(?term), "iao") || CONTAINS(str(?term), "bfo") || CONTAINS(str(?term), "obo")) ` 
 
 
 ### FILTER EXISTS
