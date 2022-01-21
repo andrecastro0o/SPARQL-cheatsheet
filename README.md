@@ -2,56 +2,7 @@
 All those SPARQL commands & tricks that you keep on forgetting ヽ༼ຈل͜ຈ༽ﾉ
 
 **Contribuitons are welcomed. Send you pull requests** 
-
-
 ## FILTER
-
-### FILTER EXISTS
-Returns graph patterns that 
-* Match the condition. `FILTER EXISTS {?subject rdfs:range rdfs:Literal}`
-* Do not match the condition `FILTER NOT EXISTS {?subject rdfs:range rdfs:Literal}`
-Example: return all the subjects with rdfs:range rdfs:Literal
-```SPARQL
-SELECT DISTINCT ?subject ?predicate ?range
-WHERE {
-    ?subject rdf:type ?predicate.
-    ?subject rdfs:range ?range.
-    FILTER EXISTS {?subject rdfs:range rdfs:Literal} 
-}
-``` 
-
-
-### FILTER blank nodes: [isBlank](https://www.w3.org/TR/rdf-sparql-query/#func-isBlank)
-
-* filter in only bank nodes `FILTER (isBlank(?term))` 
-* filter out `FILTER (!isBlank(?term))` 
-``` SPARQL
-SELECT DISTINCT ?subject ?predicate
-WHERE {
-    ?subject rdf:type ?predicate.
-    FILTER (isBlank(?subject)) 
-}
-```
-
-
-### FILTER [isIRI](https://www.w3.org/TR/rdf-sparql-query/#func-isIRI)
-
-
-### FILTER [isLiteral](https://www.w3.org/TR/rdf-sparql-query/#func-isLiteral)
-
-
-### FILTER [lang](https://www.w3.org/TR/rdf-sparql-query/#func-lang)
-Returns the language tag. 
-
-Example: filter only ?label with language tag `@es`
-`FILTER(lang(?label) = 'es')`
-
-`FILTER(lang(?label) = 'es')`
-
-Example: filter only ?label with *any* `@en` variant (will match all of these: `@en`, `@en-US`, `@en-GB`)
-`FILTER(langMatches(lang(?label), 'en'))`
-
-
 ### FILTER [datatype](https://www.w3.org/TR/rdf-sparql-query/#func-datatype)
 
 
@@ -64,6 +15,22 @@ Example: filter only ?label with *any* `@en` variant (will match all of these: `
 * `STRENDS()`  string in first arg ends with string in second arg
 * `CONTAINS()` string in second arg is within first arg. Example: `CONTAINS("SPARQL", "QL")` is True. `FILTER(CONTAINS(str(?term), "iao") || CONTAINS(str(?term), "bfo") || CONTAINS(str(?term), "obo")) ` 
 
+## Logic operators
+* `sameTerm` & `!sameTerm`  (more efficient and `=`)
+* `=`, `!=`, `>`, `>=`, `<`, `<=`
+* AND: `&&` OR: `||`
+* `IN` and `NOT IN`: `?foo IN ("bar", "anotherbar")`
+* [isIRI](https://www.w3.org/TR/rdf-sparql-query/#func-isIRI) `isIRI`
+* [isBlank](https://www.w3.org/TR/rdf-sparql-query/#func-isBlank): only bank nodes `FILTER (isBlank(?term))`  filter out `FILTER (!isBlank(?term))`  
+* [isLiteral](https://www.w3.org/TR/rdf-sparql-query/#func-isLiteral)
+
+
+## Functions
+* [lang](https://www.w3.org/TR/rdf-sparql-query/#func-lang) Returns the language tag. 
+    * `FILTER(lang(?label) = 'es')`
+    * *any* `@en` variant (will match all of these: `@en`, `@en-US`, `@en-GB`) `FILTER(langMatches(lang(?label), 'en'))`
+
+
 
 ## Aggregation Functions
 * `COUNT`
@@ -74,6 +41,17 @@ Example: filter only ?label with *any* `@en` variant (will match all of these: `
 * `GROUP_CONCAT`
 
 ----
+
+# Tips to speedup SPARQL Queries:
+* reduce search space
+* avoid `OPTIONAL` clauses (when possible), or have them follown non-optional clauses
+* avoid `FILTER` or try having them earlier - so search space is reduced:
+    * `FILTER(sameTerm(?term1, ?term2))`  is faster that `FILTER(?terms = ?term)`
+    * idem for `!sameTerm` being faster that `!=`
+    * regexs are expensive 
+* avoid `DISTINCT`
+* avoid `SORT BY` in  large amount of results
+* reduce printout named variables - allows for more optimization flexibility from the SPARQL processor 
 
 # SPARQL Resources
 * DuCharme, Bob. Learning SPARQL: Querying and Updating with SPARQL 1.1. Second edition. Sebastopol, CA: O’Reilly Media, 2013.
