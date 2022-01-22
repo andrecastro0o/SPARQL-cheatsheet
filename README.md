@@ -8,20 +8,22 @@ All those SPARQL commands & tricks that you keep on forgetting ヽ༼ຈل͜ຈ�
 ### SELECT
 ...
 
-### CONSTRUCT
-Returns triples - new values can be created through it
+### [CONSTRUCT](https://www.w3.org/TR/2013/REC-sparql11-query-20130321/#construct)
+Returns a graph specified by a graph template.
+
 
 within the `CONSTRUCT` triples are created based on the variables established within the `WHERE` query  
 ```SPARQL
 PREFIX wd: <http://www.wikidata.org/entity/>
 PREFIX wdt: <http://www.wikidata.org/prop/direct/>
 PREFIX mo: <http://semantics.id/ns/example/movie#>
+prefix ex: <http://semantics.id/ns/example#> 
 CONSTRUCT
     { 
-     ?s a mo:Movie ;
+     ?iri a mo:Movie ;
         mo:hasWikidataLink ?s ;
         mo:hasIMDBResource ?imdbRes ;
-        mo:title ?title . 
+        mo:title ?title ;
     }
 WHERE {
     SERVICE <https://query.wikidata.org/sparql>
@@ -30,22 +32,25 @@ WHERE {
         wdt:P345 ?imdbId ; 
         wdt:P1476 ?title .
         BIND(IRI(CONCAT("https://www.imdb.com/title/", ?imdbId )) AS ?imdbRes) .
-    }
+        BIND( IRI(CONCAT("http://semantics.id/ns/example#", ?imdbId )) AS ?iri) .
+   }
 }
 LIMIT 2
+
 ```
 Resulting in new triples
 ```ttl
+@prefix ex:  <http://semantics.id/ns/example#> .
 @prefix mo:  <http://semantics.id/ns/example/movie#> .
 @prefix wd:  <http://www.wikidata.org/entity/> .
 @prefix wdt: <http://www.wikidata.org/prop/direct/> .
 
-wd:Q965111  a               mo:Movie ;
-        mo:hasIMDBResource  <https://www.imdb.com/title/tt1079448> ;
-        mo:hasWikidataLink  wd:Q965111 ;
-        mo:title            "Snow Buddies"@en .
+ex:tt0461770  a             mo:Movie ;
+        mo:hasIMDBResource  <https://www.imdb.com/title/tt0461770> ;
+        mo:hasWikidataLink  wd:Q490464 ;
+        mo:title            "Enchanted"@en .
 
-wd:Q964009  a               mo:Movie ;
+ex:tt0070215  a             mo:Movie ;
         mo:hasIMDBResource  <https://www.imdb.com/title/tt0070215> ;
         mo:hasWikidataLink  wd:Q964009 ;
         mo:title            "Il mio nome è Nessuno"@it .
