@@ -83,7 +83,8 @@ ex:tt0070215  a             mo:Movie ;
 * [lang](https://www.w3.org/TR/rdf-sparql-query/#func-lang) Returns the language tag. 
     * `FILTER(lang(?label) = 'es')`
     * *any* `@en` variant (will match all of these: `@en`, `@en-US`, `@en-GB`) `FILTER(langMatches(lang(?label), 'en'))`
-
+* [datatype](https://www.w3.org/TR/2013/REC-sparql11-query-20130321/#func-datatype) returns the datatype of a literal 
+    * `BIND( datatype(?shoeSize) AS ?datatype)`
 
 
 ## Aggregation Functions
